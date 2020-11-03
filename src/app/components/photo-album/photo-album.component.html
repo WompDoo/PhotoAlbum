@@ -1,0 +1,52 @@
+<div class="ui container">
+    <div class="ui stackable grid">
+        <div class="six wide column user-table">
+            <div class="ui inverted vertical pointing menu">
+                <a *ngFor="let user of users" id="{{user.id}}" class="item"
+                    [ngClass]="{'active': selectedItem === user.id}"
+                    (click)="getUserAlbum(user.id); selectedItem = user.id">
+                    <div class="ui grid">
+                        <div class="eight wide column">
+                            <p>{{user.name}}</p>
+                        </div>
+                        <div class="eight wide column"><button class="ui eight wide button"
+                                (click)="createAlbum(user.id)">Create album</button></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="ten wide column content-table">
+            <div *ngIf="showAlbums" class="ui inverted segment">
+                <div class="ui inverted relaxed divided list">
+                    <div *ngFor="let album of albums; index as i" class="item">
+                        <div class="content">
+                            <div class="header content-header">{{album.title}}</div>
+                            <button class="ui left attached positive button"
+                                (click)="getAlbumPhotos(album.id)">Open</button>
+                            <button class="right attached negative ui button" (click)="deleteAlbum(album.id, i)">
+                                Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui container photos" *ngIf="showPhotos">
+                <div class="ui three cards">
+                    <div class="card" *ngFor="let pics of albumPhotos; index as i">
+                        <div class="image">
+                            <img src="{{pics.thumbnailUrl}}">
+                        </div>
+                        <div class="content">
+                            <p class="header">{{pics.title}}</p>
+                        </div>
+                        <div class="extra content">
+                            <button class="ui negative button" (click)="deletePicture(pics.albumId, pics.id, i)">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<table class="ui celled structured table">
+    <thead>
+        <tr>
+            <th colspan="1"></th>
+            <th colspan="2">Album</th>
+            <th colspan="2">Picture</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Created</th>
+            <th>Deleted</th>
+            <th>Created</th>
+            <th>Deleted</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of usersActionMetrics | keyvalue; let i = index;">
+            <td>{{this.users[user.key]}}</td>
+            <td>{{user.value.album.created}}</td>
+            <td>{{user.value.album.deleted}}</td>
+            <td>{{user.value.pictures.created}}</td>
+            <td>{{user.value.pictures.deleted}}</td>
+        </tr>
+    </tbody>
+</table>
+<table class="ui celled table">
+    <tbody>
+        <tr *ngFor="let log of logs">
+            <td>{{log}}</td>
+        </tr>
+    </tbody>
+</table>
